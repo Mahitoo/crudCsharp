@@ -1,0 +1,10 @@
+create database crud;
+use crud;
+create table usuario(
+nome char(90) not null,
+cpf varchar(11) primary key,
+profissao varchar(90) not null
+);
+
+drop database crud;
+select * from usuario;

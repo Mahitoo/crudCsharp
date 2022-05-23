@@ -1,0 +1,17 @@
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\bin\Debug\Crud.exe.config
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\bin\Debug\Crud.exe
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\bin\Debug\Crud.pdb
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\bin\Debug\MySql.Data.dll
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\bin\Debug\Google.Protobuf.dll
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\bin\Debug\ZstdNet.dll
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\bin\Debug\K4os.Compression.LZ4.Streams.dll
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\bin\Debug\BouncyCastle.Crypto.dll
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\bin\Debug\Ubiety.Dns.Core.dll
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\bin\Debug\System.Buffers.dll
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\bin\Debug\K4os.Compression.LZ4.dll
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\bin\Debug\K4os.Hash.xxHash.dll
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\bin\Debug\MySql.Data.xml
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\obj\Debug\Crud.csprojResolveAssemblyReference.cache
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\obj\Debug\Crud.csproj.Crud.exe.config
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\obj\Debug\Crud.exe
+c:\users\mathe\documents\visual studio 2015\Projects\Crud\Crud\obj\Debug\Crud.pdb
