@@ -35,41 +35,15 @@ namespace Crud
             {
 
                 int escolhaCase;
-                Console.WriteLine("Escolha uma dentre as Opções abaixo  \n1 - Listar Usuários \n2 - Adicionar Usuário \n3 - Atualizar Usuários \n4 - Deletar Usuário \n5 - Sair do Programa");
+                Console.WriteLine("Escolha uma dentre as Opções abaixo  \n1 - Adicionar Usuários \n2 - Listar Usuário \n3 - Atualizar Usuários \n4 - Deletar Usuário \n5 - Sair do Programa");
                 escolhaCase = int.Parse(Console.ReadLine());
 
                 Console.Clear();
                 switch (escolhaCase)
                 {
+                    
+
                     case 1:
-
-                        conexao.Close();
-                        conexao.Open();
-
-                        string sql = "select * from usuario";
-                        MySqlCommand cmd = new MySqlCommand(sql, conexao);
-                        MySqlDataReader rdr = cmd.ExecuteReader();
-
-                        if (rdr.HasRows)
-                        {
-                            while (rdr.Read())
-                            {
-                                Console.WriteLine("Nome: {0} \nCPF: {1} \nProfissão: {2}", rdr["nome"], rdr["cpf"], rdr["profissao"]);
-                            }
-                            conexao.Close();
-                            Console.ReadKey();
-
-                        }else
-                        {
-                            Console.WriteLine("Nenhum Usuário foi cadastro em nosso banco de dados!!");
-                            Console.ReadKey();
-                            Console.Clear();
-                        }
-                        conexao.Close();
-                        Console.Clear();
-                        break; // fim listar usuarios
-
-                    case 2:
                         if (conexao.State == ConnectionState.Open)
                         {
 
@@ -98,6 +72,34 @@ namespace Crud
                         Console.Clear();
                         conexao.Close();
                         break; // fim adicionar usuarios
+
+                    case 2:
+                        conexao.Close();
+                        conexao.Open();
+
+                        string sql = "select * from usuario";
+                        MySqlCommand cmd = new MySqlCommand(sql, conexao);
+                        MySqlDataReader rdr = cmd.ExecuteReader();
+
+                        if (rdr.HasRows)
+                        {
+                            while (rdr.Read())
+                            {
+                                Console.WriteLine("Nome: {0} \nCPF: {1} \nProfissão: {2}", rdr["nome"], rdr["cpf"], rdr["profissao"]);
+                            }
+                            conexao.Close();
+                            Console.ReadKey();
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nenhum Usuário foi cadastro em nosso banco de dados!!");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                        conexao.Close();
+                        Console.Clear();
+                        break; // fim listar usuarios
 
                     case 3:
                         conexao.Close();
