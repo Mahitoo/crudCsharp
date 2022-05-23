@@ -13,6 +13,8 @@ namespace Crud
     {
         string fimDoWhile = "1"; // variavel para finalizar laço de repetição do/while
 
+        
+
         public void usuario()
         {
             MySqlConnection conexao = new MySqlConnection("server=localhost;charset=utf8;database=crud;uid=root;password=");
