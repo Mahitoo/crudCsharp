@@ -14,14 +14,12 @@ namespace Crud
         public string nome;
         public string cpf;
         public string profissao;
-
+        
         public void cadastroUsuario()
         {
-            usuarioDAO cadUsuario = new usuarioDAO();
-            cadUsuario.usuario();
-            
-               
+            Dao cadUsuario = new Dao();
+            cadUsuario.CadastroFinal();
+                           
         }
-
     }
 }

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao.cs" />
     <Compile Include="usuario.cs" />
     <Compile Include="usuarioDAO.cs" />
     <Compile Include="Program.cs" />
