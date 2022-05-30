@@ -14,8 +14,8 @@ namespace Crud
     {
         static void Main(string[] args)
         {
-            usuario us = new usuario();
-            us.cadastroUsuario();
+            Dao cadUsuario = new Dao();
+            cadUsuario.CadastroFinal();
         }
     }
 }

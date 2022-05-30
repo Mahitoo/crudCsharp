@@ -11,15 +11,15 @@ namespace Crud
 {
     class usuario
     {
-        public string nome;
-        public string cpf;
-        public string profissao;
+       // public string nome;
+        //public string cpf;
+        //public string profissao;
         
-        public void cadastroUsuario()
-        {
-            Dao cadUsuario = new Dao();
-            cadUsuario.CadastroFinal();
+        //public void cadastroUsuario()
+        //{
+          //  Dao cadUsuario = new Dao();
+            //cadUsuario.CadastroFinal();
                            
-        }
+       // }
     }
 }

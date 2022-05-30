@@ -5,22 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Data;
-using MySql.Data;
 
 
 namespace Crud
 {
-    class Dao : usuario
+    class Dao : Program
     {
-        private MySqlConnection conexao;
 
-        public Dao()
+        public string nome;
+        public string cpf;
+        public string profissao;
+        private MySqlConnection Conexao;
+
+        public void ConexaoBanco()
         {
-            MySqlConnection conexao = new MySqlConnection("server=localhost;charset=utf8;database=crud;uid=root;password=");
+            Conexao = new MySqlConnection("server=localhost;database=crud;uid=root;password=");            
 
+        }
+
+        public void ConexaoInicar()
+        {
             try
             {
-                conexao.Open();
+                Conexao.Open();
                 Console.WriteLine("Conexão realizada com sucesso!!");
                 Console.Clear();
             }
@@ -31,18 +38,17 @@ namespace Crud
                 Console.ReadKey();
                 Environment.Exit(0);
             }
-
         }
 
         public void Insert()
         {
-            if (conexao.State == ConnectionState.Open)
+            if (Conexao.State == ConnectionState.Open)
             {
 
             }
             else
             {
-                conexao.Open();
+                Conexao.Open();
             }
             Console.WriteLine("Digite o Nome: ");
             cpf = Console.ReadLine();
@@ -56,22 +62,37 @@ namespace Crud
             // inserindo um novo usuario no banco de dados
             string sqlInsert = "insert into  usuario values ('" + cpf + "','" + nome + "', '" + profissao + "')";
 
-            MySqlCommand cmdInsert = new MySqlCommand(sqlInsert, conexao);
+            MySqlCommand cmdInsert = new MySqlCommand(sqlInsert, Conexao);
             cmdInsert.ExecuteNonQuery();
             Console.WriteLine("Usuário cadastrado com SUCESSO!!");
 
             Console.ReadKey();
             Console.Clear();
-            conexao.Close();
+            Conexao.Close();
         }
 
         public void List()
         {
-            conexao.Close();
-            conexao.Open();
+            if (this.Conexao.State == ConnectionState.Open)
+            {
+
+            }
+            else
+            {
+                try
+                {
+                    this.Conexao.Open();
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("Erro ao tentar abrir a conexao com o banco de dados");
+                    Console.Clear();            
+                }
+            }
 
             string sql = "select * from usuario";
-            MySqlCommand cmd = new MySqlCommand(sql, conexao);
+            MySqlCommand cmd = new MySqlCommand(sql, Conexao);
             MySqlDataReader rdr = cmd.ExecuteReader();
 
             if (rdr.HasRows)
@@ -80,7 +101,6 @@ namespace Crud
                 {
                     Console.WriteLine("Nome: {0} \nCPF: {1} \nProfissão: {2}", rdr["nome"], rdr["cpf"], rdr["profissao"]);
                 }
-                conexao.Close();
                 Console.ReadKey();
 
             }
@@ -90,14 +110,29 @@ namespace Crud
                 Console.ReadKey();
                 Console.Clear();
             }
-            conexao.Close();
+            Conexao.Close();
             Console.Clear();
         }
 
         public void Update()
         {
-            conexao.Close();
-            conexao.Open();
+            if (Conexao.State == ConnectionState.Open)
+            {
+
+            }
+            else
+            {
+                try
+                {
+                    Conexao.Open();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("Erro ao tentar abrir a conexao com o banco de dados");
+                    Console.Clear();
+                }
+            }
 
             // atualizando um usuario através de seu cpf
             Console.WriteLine("Digite o cpf do usuário para altera-lo");
@@ -111,7 +146,7 @@ namespace Crud
 
 
             string sqlUpdate = "update usuario SET nome = @nome,  profissao = @profissao Where cpf = @cpf ";
-            MySqlCommand cmd = new MySqlCommand(sqlUpdate, conexao);
+            MySqlCommand cmd = new MySqlCommand(sqlUpdate, Conexao);
             cmd.Parameters.AddWithValue("@cpf", cpf);
             cmd.Parameters.AddWithValue("@nome", nome);
             cmd.Parameters.AddWithValue("@profissao", profissao);
@@ -121,17 +156,32 @@ namespace Crud
 
             Console.ReadKey();
             Console.Clear();
-            conexao.Close();
+            Conexao.Close();
         }
 
         public void Delete()
         {
-            conexao.Close();
-            conexao.Open();
+            if (Conexao.State == ConnectionState.Open)
+            {
+
+            }
+            else
+            {
+                try
+                {
+                    Conexao.Open();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("Erro ao tentar abrir a conexao com o banco de dados");
+                    Console.Clear();
+                }
+            }
 
             // deletar um usuario através de seu cpf
             string sql = "select * from usuario";
-            MySqlCommand cmd = new MySqlCommand(sql, conexao);
+            MySqlCommand cmd = new MySqlCommand(sql, Conexao);
             MySqlDataReader rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
@@ -143,31 +193,32 @@ namespace Crud
 
             if (rdr == null)
             {
-                conexao.Close();
-                conexao.Open();
+                Conexao.Close();
+                Conexao.Open();
                 Console.WriteLine("Usuário não encontrado");
                 Console.ReadKey();
-                conexao.Close();
+                Conexao.Close();
 
             }
             else if (rdr != null)
             {
-                conexao.Close();
-                conexao.Open();
+                Conexao.Close();
+                Conexao.Open();
                 string sqlDelete= "delete from usuario where cpf = @cpf ";
-                MySqlCommand cmdDelete = new MySqlCommand(sqlDelete, conexao);
+                MySqlCommand cmdDelete = new MySqlCommand(sqlDelete, Conexao);
                 cmdDelete.Parameters.AddWithValue("@cpf", cpf);
                 cmdDelete.ExecuteNonQuery();
                 Console.WriteLine("Dados do Usuário deletados com sucesso");
             }
             Console.ReadKey();
             Console.Clear();
-            conexao.Close();
+            Conexao.Close();
         }
 
         public void CadastroFinal()
         {
-
+            ConexaoBanco();
+            ConexaoInicar();
             string fimDoWhile = "1"; // variavel para finalizar laço de repetição do/while
             int escolhaCase; // variavel para escolha de sistema de case
             do
@@ -194,13 +245,11 @@ namespace Crud
                         Delete();
                         break;
 
-
                     case 5:
 
                         Environment.Exit(0);
                         Console.Clear();
                         break;
-
 
                     default:
                         Console.WriteLine("Não temos essa opção em nosso programa!!");
